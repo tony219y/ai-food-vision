@@ -1,0 +1,1 @@
+Component ที่เป็นหน้าจอหลัก (เช่น Home, About)
