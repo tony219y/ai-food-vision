@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 
-const MAX_SIZE_MB = 5;
+const MAX_SIZE_MB = 10;
 
 export default function UploadBox() {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
