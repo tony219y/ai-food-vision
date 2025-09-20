@@ -2,7 +2,7 @@ fastapi==0.95.2
 uvicorn[standard]==0.22.0
 pydantic==1.10.9
 transformers==4.34.0
-torch==2.0.1
+torch==2.6.0
 python-multipart==0.0.6
 aiofiles==23.1.0
 Pillow==10.0.0
