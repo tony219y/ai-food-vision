@@ -52,21 +52,6 @@ export default function UploadBox() {
         setIsAnalyzing(true);
         setError(null);
         setResult(null);
-
-        // try {
-        //     // e.g., send file to backend for analysis
-        //     const formData = new FormData();
-        //     formData.append("file", file);
-
-        //     const res = await fetch("/api/analyze", { method: "POST", body: formData });
-        //     if (!res.ok) throw new Error("Analysis failed");
-        //     const data = await res.json();
-        //     setResult(data);
-        // } catch (err: any) {
-        //     setError(err.message || "Something went wrong");
-        // } finally {
-        //     setIsAnalyzing(false);
-        // }
         try {
             // Mock result for demonstration
             await new Promise((r) => setTimeout(r, 1000)); // delay a bit to simulate analyze
