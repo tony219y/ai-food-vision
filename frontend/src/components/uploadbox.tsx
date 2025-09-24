@@ -1,17 +1,12 @@
 import { useRef, useState, useEffect } from "react";
 
-// import sub components
 import NutritionItemsTable from "./NutritionItemsTable";
 import NutrientTable from "./NutrientTable";
 import Notes from "./Notes";
 import Tags from "./Tags";
 
-// import constants
 import { MAX_SIZE_MB, fmt } from "../config/constants";
 
-// UploadBox component allows users to upload an image file, analyzes it, and displays results.
-// It handles drag-and-drop, file selection, and shows analysis results including nutrition info.
-// Uses subcomponents: NutritionItemsTable, NutrientTable, Notes, Tags.
 export default function UploadBox() {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [file, setFile] = useState<File | null>(null);
@@ -19,6 +14,8 @@ export default function UploadBox() {
     const [error, setError] = useState<string | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
+
+    //TODO: Create a type interface for define a result
     const [result, setResult] = useState<any | null>(null); // <-- result from backend
 
     // Cleanup preview URL on unmount or when preview changes
@@ -27,7 +24,7 @@ export default function UploadBox() {
     }, [preview]);
 
     // Handle file selection and validation
-    const handleFile = (f: File) => {
+    const handleFile = async(f: File) => {
         setError(null);
         setResult(null);
         if (!f.type.startsWith("image/")) { setError("Please select an image"); return; }
@@ -52,30 +49,7 @@ export default function UploadBox() {
         setIsAnalyzing(true);
         setError(null);
         setResult(null);
-        try {
-            // Mock result for demonstration
-            await new Promise((r) => setTimeout(r, 1000)); // delay a bit to simulate analyze
-            const mockResult = {
-                items: [
-                    { name: "Grilled Chicken", calories: 200, protein_g: 30, carbs_g: 0, fat_g: 5 },
-                    { name: "Steamed Rice", calories: 150, protein_g: 3, carbs_g: 33, fat_g: 0 },
-                ],
-                total_calories: 350,
-                protein_g: 33,
-                carbs_g: 33,
-                fat_g: 5,
-                fiber_g: 2,
-                sugar_g: 1,
-                serving_size: "1 plate",
-                notes: "This is a mock result for testing purposes.",
-                tags: ["High Protein", "Low Fat"],
-            };
-            setResult(mockResult);
-        } catch (err: any) {
-            setError(err.message || "Something went wrong");
-        } finally {
-            setIsAnalyzing(false);
-        }
+        // TODO: Implement this function and connect to api
     };
 
 
@@ -92,7 +66,6 @@ export default function UploadBox() {
 
                 {/* Drop zone */}
                 <div
-                    role="button"
                     tabIndex={0}
                     aria-busy={isAnalyzing}
                     onClick={() => fileInputRef.current?.click()}

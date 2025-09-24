@@ -1,3 +1,4 @@
+prompt = """
 You are an expert nutritionist.
 
 From the provided image:
@@ -35,3 +36,4 @@ Recommended output shape:
     "fat_g": number
   }
 }
+"""
