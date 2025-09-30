@@ -1,7 +1,9 @@
+import ExamImage from "../components/ExamImage";
+
 const Landing = () => {
   return (
     <div className="flex w-full h-screen justify-center items-center">
-      Hello world!
+      <ExamImage></ExamImage>
     </div>
   );
 };
