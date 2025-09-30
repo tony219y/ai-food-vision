@@ -1,7 +1,7 @@
 import Uploadbox from "../components/uploadbox";
 const Landing = () => {
   return (
-    <div className="flex w-full h-screen mt-10  justify-center ">
+    <div className="flex flex-col w-full items-center">
       <Uploadbox />
     </div>
   );

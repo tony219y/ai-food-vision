@@ -3,7 +3,7 @@
 // - data: Array of [name, value] pairs to display.
 // - naText: Optional text to show if value is undefined (default: "N/A").
 
-interface NutrientPair extends Array<string | number | undefined> {}
+type NutrientPair = Array<string | number | undefined>
 
 interface Props {
   data: NutrientPair[];

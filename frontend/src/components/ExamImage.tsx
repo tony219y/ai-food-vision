@@ -1,6 +1,8 @@
 import { useState } from "react";
-
-const ExamImage = () => {
+type Props = {
+  onPickFile?: (file: File) => Promise<void> | void;
+};
+const ExamImage = ({ onPickFile }: Props) => {
   const [selected, setSelected] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -23,32 +25,32 @@ const ExamImage = () => {
       const response = await fetch(imgSrc);
       const blob = await response.blob();
 
-      const file = new File([blob], imgSrc.split("/").pop() || "image.jpg", { type: blob.type });
-
-      const formData = new FormData();
-      formData.append("image", file);
-
-      await fetch("/api/save-image", {
-        method: "POST",
-        body: formData,
+      const file = new File([blob], imgSrc.split("/").pop() || "image.jpg", {
+        type: blob.type,
       });
+
+      if (onPickFile) {
+        await onPickFile(file);
+      }
+
+      setSelected(imgSrc);
+      setLoading(false);
     } catch (err) {
       console.error(err);
-    } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="border-3 border-dashed border-[rgb(192,192,192)] rounded-lg w-fit p-5">
-      <div className="text-xl ml-2 mb-4">Example Image</div>
-
-      <div className="p-5 grid grid-cols-3 gap-5 justify-center">
+    <div className="fixed right-10 flex flex-col border-3 border-dashed border-gray-300 rounded-lg w-fit h-fit p-5 my-5 max-lg:hidden">
+      <h1 className="text-xl">Example Image</h1>
+      <p className="opacity-50">You can click on the image to see the result</p>
+      <div className="p-5 grid grid-cols-2 gap-5 justify-center">
         {images.map((src) => (
           <div key={src} className="w-[200px] h-[200px] cursor-pointer">
             <img
               src={src}
-              className={`w-full h-full object-cover rounded-md ${
+              className={`w-full h-full object-cover rounded-md drop-shadow-md hover:scale-110 duration-300 hover:border-5 ${
                 selected === src ? "ring-4 ring-blue-500" : ""
               }`}
               onClick={() => handleImageClick(src)}
