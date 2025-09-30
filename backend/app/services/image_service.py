@@ -10,7 +10,6 @@ load_dotenv()
 async def getNutrition(uploadInput: UploadFile):
         ai_prompt = prompt.prompt
         key = os.getenv("GOOGLE_API_KEY")
-         
         lower = uploadInput.filename.lower()
         if lower.endswith((".jpg", ".jpeg")):
             mime_type = "image/jpeg"
@@ -38,7 +37,8 @@ async def getNutrition(uploadInput: UploadFile):
             "data": encoded_image
         }
         genai.configure(api_key=key)
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
+
         response = model.generate_content([ai_prompt, image_part])
         result = response.text
         return result
