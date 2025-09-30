@@ -7,6 +7,8 @@ import Tags from "./Tags";
 
 import { MAX_SIZE_MB, fmt } from "../config/constants";
 
+import api from "../services/api";
+
 export default function UploadBox() {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [file, setFile] = useState<File | null>(null);
@@ -49,7 +51,17 @@ export default function UploadBox() {
         setIsAnalyzing(true);
         setError(null);
         setResult(null);
-        // TODO: Implement this function and connect to api
+        
+        try {
+        const formData = new FormData();
+        formData.append("uploadInput", file); 
+        const response = await api.post("/api/v1/upload", formData, {});
+        setResult(response.data); 
+        } catch (err: any) {
+        setError(err.response?.data?.detail || "Unable to connect to the server. Please try again.");
+        } finally {
+        setIsAnalyzing(false);
+        }
     };
 
 
