@@ -1,4 +1,3 @@
-
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from app.services.health_service import ServerHealth

@@ -1,9 +1,8 @@
-import ExamImage from "../components/ExamImage";
-
+import Uploadbox from "../components/uploadbox";
 const Landing = () => {
   return (
-    <div className="flex w-full h-screen justify-center items-center">
-      <ExamImage></ExamImage>
+    <div className="flex w-full h-screen mt-10  justify-center ">
+      <Uploadbox />
     </div>
   );
 };
