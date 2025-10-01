@@ -42,7 +42,7 @@ const ExamImage = ({ onPickFile }: Props) => {
   };
 
   return (
-    <div className="fixed right-10 flex flex-col border-3 border-dashed border-gray-300 rounded-lg w-fit h-fit p-5 my-5 max-lg:hidden">
+    <div className="fixed right-5 flex flex-col border-3 border-dashed border-gray-300 rounded-lg w-fit h-fit p-5 my-5 max-lg:hidden">
       <h1 className="text-xl">Example Image</h1>
       <p className="opacity-50">You can click on the image to see the result</p>
       <div className="p-5 grid grid-cols-2 gap-5 justify-center">

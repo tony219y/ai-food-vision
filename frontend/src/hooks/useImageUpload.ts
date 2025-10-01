@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { MAX_SIZE_MB } from "../config/constants";
 import api from "../services/api";
+import type { ResponseResult } from "../types/nutrition-model";
 
 export const useImageUpload = () => {
     const [file, setFile] = useState<File | null>(null);
     const [preview, setPreview] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
-    const [result, setResult] = useState<any | null>(null);
+    const [result, setResult] = useState<ResponseResult>();
 
     useEffect(() => {
         return () => {
@@ -17,7 +18,6 @@ export const useImageUpload = () => {
 
     const handleFile = async (f: File) => {
         setError(null);
-        setResult(null);
         if (!f.type.startsWith("image/")) {
             setError("Please select an image");
             return;
@@ -36,20 +36,19 @@ export const useImageUpload = () => {
         setFile(null);
         setPreview(null);
         setError(null);
-        setResult(null);
     };
 
     const analyze = async () => {
         if (!file) return;
         setIsAnalyzing(true);
         setError(null);
-        setResult(null);
 
         try {
             const formData = new FormData();
             formData.append("uploadInput", file);
             const response = await api.post("/api/v1/upload", formData, {});
             setResult(response.data);
+            console.log(typeof result);
         } catch (err: any) {
             setError(
                 err?.response?.data?.detail ||
