@@ -47,7 +47,7 @@ const ExamImage = ({ onPickFile }: Props) => {
       <p className="opacity-50">You can click on the image to see the result</p>
       <div className="p-5 grid grid-cols-2 gap-5 justify-center">
         {images.map((src) => (
-          <div key={src} className="w-[200px] h-[200px] cursor-pointer">
+          <div key={src} className="w-[150px] h-[150px] cursor-pointer">
             <img
               src={src}
               className={`w-full h-full object-cover rounded-md drop-shadow-md hover:scale-110 duration-300 hover:border-5 ${
