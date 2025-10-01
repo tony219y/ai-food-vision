@@ -169,7 +169,7 @@ export default function UploadBox() {
           {result && (
             <div className="max-w-[800px] space-y-6 mt-10">
               {/* NutritionItemsTable and NutrientTable */}
-              <NutritionItemsTable
+              {/* <NutritionItemsTable
                 items={result.items || []}
                 totals={{
                   total_calories: result.total_calories ?? result.calories,
@@ -177,8 +177,8 @@ export default function UploadBox() {
                   carbs_g: result.carbs_g,
                   fat_g: result.fat_g,
                 }}
-              />
-              <NutrientTable
+              /> */}
+              {/* <NutrientTable
                 data={[
                   ["Serving Size", result.serving_size],
                   ["Calories", result.calories],
@@ -188,10 +188,10 @@ export default function UploadBox() {
                   ["Fiber", result.fiber_g],
                   ["Sugar", result.sugar_g],
                 ]}
-              />
+              /> */}
               {/* Notes and Tags */}
-              <Notes text={result.notes} />
-              <Tags items={result.tags} />
+              {/* <Notes text={result.notes} />
+              <Tags items={result.tags} /> */}
             </div>
           )}
 
