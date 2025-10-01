@@ -4,4 +4,4 @@
 /backend/.env
 /backend/__pycache__/
 
-/venv/
+/.venv/
