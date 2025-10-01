@@ -1,8 +1,6 @@
 import { useRef, useState } from "react";
 
 import NutritionItemsTable from "./NutritionItemsTable";
-import NutrientTable from "./NutrientTable";
-import Notes from "./Notes";
 import Tags from "./Tags";
 
 import ExamImage from "./ExamImage";
@@ -168,30 +166,10 @@ export default function UploadBox() {
           {/* Result UI */}
           {result && (
             <div className="max-w-[800px] space-y-6 mt-10">
-              {/* NutritionItemsTable and NutrientTable */}
-              {/* <NutritionItemsTable
-                items={result.items || []}
-                totals={{
-                  total_calories: result.total_calories ?? result.calories,
-                  protein_g: result.protein_g,
-                  carbs_g: result.carbs_g,
-                  fat_g: result.fat_g,
-                }}
-              /> */}
-              {/* <NutrientTable
-                data={[
-                  ["Serving Size", result.serving_size],
-                  ["Calories", result.calories],
-                  ["Protein", result.protein_g],
-                  ["Carbohydrates", result.carbs_g],
-                  ["Fat", result.fat_g],
-                  ["Fiber", result.fiber_g],
-                  ["Sugar", result.sugar_g],
-                ]}
-              /> */}
-              {/* Notes and Tags */}
-              {/* <Notes text={result.notes} />
-              <Tags items={result.tags} /> */}
+                <NutritionItemsTable result={result} />
+          
+              {/* {Tags} */}
+              <Tags result ={result} />
             </div>
           )}
 

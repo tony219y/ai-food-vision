@@ -10,6 +10,7 @@ From the provided image:
    - protein_g
    - carbs_g
    - fat_g
+   - helthTags (choose from: low_carb, high_protein, low_fat, vegan, vegetarian, gluten_free, dairy_free, nut_free, low_sugar, high_fiber)
 3) Compute totals across all items.
 
 Output REQUIREMENTS:
@@ -34,6 +35,12 @@ Recommended output shape:
     "protein_g": number,
     "carbs_g": number,
     "fat_g": number
+  },
+  
+  "healthTags" : {
+    ["low_carb", "high_protein", "low_fat", "vegan", "vegetarian", "gluten_free", "dairy_free", "nut_free", "low_sugar", "high_fiber"] // include only relevant tags
   }
+  
+  
 }
 """

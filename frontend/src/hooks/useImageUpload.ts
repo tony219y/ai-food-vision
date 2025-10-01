@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { MAX_SIZE_MB } from "../config/constants";
 import api from "../services/api";
-import type { ModelOK, ResponseResult } from "../types/nutrition-model";
+import type { ResponseResult } from "../types/nutrition-model";
 
 export const useImageUpload = () => {
     const [file, setFile] = useState<File | null>(null);
@@ -18,7 +18,6 @@ export const useImageUpload = () => {
 
     const handleFile = async (f: File) => {
         setError(null);
-        // setResult({} as ResponseResult);
         if (!f.type.startsWith("image/")) {
             setError("Please select an image");
             return;
@@ -37,21 +36,19 @@ export const useImageUpload = () => {
         setFile(null);
         setPreview(null);
         setError(null);
-        // setResult({} as ModelOK);
     };
 
     const analyze = async () => {
         if (!file) return;
         setIsAnalyzing(true);
         setError(null);
-        // setResult({} as ModelOK);
 
         try {
             const formData = new FormData();
             formData.append("uploadInput", file);
             const response = await api.post("/api/v1/upload", formData, {});
             setResult(response.data);
-            console.log(result);
+            console.log(typeof result);
         } catch (err: any) {
             setError(
                 err?.response?.data?.detail ||
