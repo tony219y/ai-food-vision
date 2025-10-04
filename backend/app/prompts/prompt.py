@@ -38,7 +38,7 @@ Recommended output shape:
   },
   
   "healthTags" : {
-    ["low_carb", "high_protein", "low_fat", "vegan", "vegetarian", "gluten_free", "dairy_free", "nut_free", "low_sugar", "high_fiber"] // include only relevant tags
+    ["low_carb", "high_protein", "low_fat", "vegan", "vegetarian", "gluten_free", "dairy_free", "nut_free", "low_sugar", "high_fiber"]
   }
   
   

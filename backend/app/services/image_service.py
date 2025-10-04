@@ -7,9 +7,19 @@ from dotenv import load_dotenv
 import app.prompts.prompt as prompt
 load_dotenv()
 
+key = os.getenv("GOOGLE_API_KEY")
+if not key:
+    raise ValueError("GOOGLE_API_KEY not found")
+
+try:
+    genai.configure(api_key=key)
+    model = genai.GenerativeModel('gemini-2.5-flash')
+except Exception as e:
+    print(f"Error configuration Gemini: {e}")
+    
+
 async def getNutrition(uploadInput: UploadFile):
         ai_prompt = prompt.prompt
-        key = os.getenv("GOOGLE_API_KEY")
         lower = uploadInput.filename.lower()
         if lower.endswith((".jpg", ".jpeg")):
             mime_type = "image/jpeg"
@@ -36,8 +46,6 @@ async def getNutrition(uploadInput: UploadFile):
             "mime_type": mime_type,
             "data": encoded_image
         }
-        genai.configure(api_key=key)
-        model = genai.GenerativeModel('gemini-2.5-flash')
 
         response = model.generate_content([ai_prompt, image_part])
         result = response.text
